@@ -26,6 +26,130 @@ Now the project is ready to go and can be started by running `npm run start:dev`
 - `npm run db:sync` - Synchronize Typeorm entities with database.
 - `npm run db:fixtures` - Insert test data into database (fixtures are located in `/data/fixtures`).
 
+## Endpoints
+
+### `GET [/api/accounts]`
+
+Retrieve a list of all accounts.
+
+#### Response:
+
+```json
+[
+  {
+    "id": 1,
+    "accountId": "123456789",
+    "name": "Main Account",
+    "owner": "John Doe",
+    "balance": 1000,
+    "timestamp": "2022-10-20 21:42:15"
+  },
+  {
+    "id": 1,
+    "accountId": "987654321",
+    "name": "Main Account",
+    "owner": "Jane Doe",
+    "balance": 1000,
+    "timestamp": "2022-10-20 21:42:15"
+  }
+]
+```
+
+### `GET [/api/accounts/:id]`
+
+Retrieve an account by id.
+
+#### Response:
+
+```json
+{
+  "id": 1,
+  "accountId": "123456789",
+  "name": "Main Account",
+  "owner": "John Doe",
+  "balance": 1000,
+  "timestamp": "2022-10-20 21:42:15"
+}
+```
+
+### `POST [/api/accounts]`
+
+Create a new account.
+
+#### Request:
+
+```json
+{
+  "accountId": "123456789",
+  "name": "Main Account",
+  "owner": "John Doe",
+  "balance": 1000
+}
+```
+
+#### Response:
+
+```json
+{
+  "id": 1,
+  "accountId": "123456789",
+  "name": "Main Account",
+  "owner": "John Doe",
+  "balance": 1000,
+  "timestamp": "2022-10-20 21:42:15"
+}
+```
+
+### `POST [/api/accounts/:id]`
+
+Update an existing account.
+
+#### Request:
+
+```json
+{
+  "accountId": "123456789",
+  "name": "Main Account",
+  "owner": "John Doe",
+  "balance": 1000
+}
+```
+
+### `DELETE [/api/accounts/s/:id]`
+
+Soft deletes an account by id.
+
+### `DELETE [/api/accounts/h/:id]`
+
+Deletes an account by id.
+
+### `POST [/api/transfers/transfer]`
+
+Transfers money from one account to another.
+
+#### Request:
+
+```json
+{
+  "senderAccountId": "123456788",
+  "receiverAccountId": "987654321",
+  "amount": 500
+}
+```
+
+#### Response:
+
+```json
+{
+  "id": 1,
+  "senderAccountId": "123456788",
+  "receiverAccountId": "987654321",
+  "amount": 500,
+  "result": "Successful",
+  "timestamp": "2022-10-20 21:42:15"
+}
+```
+
 ## Tests
 
 - `npm run tests:e2e` - Run Integration tests.
