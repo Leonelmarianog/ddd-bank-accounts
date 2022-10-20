@@ -1,6 +1,7 @@
 import { MoneyTransferResult } from '../../domain/money-transfer-result.enum';
+import { AccountResponse } from './account-response.dto';
 
-export class MoneyTransferDto {
+export class MoneyTransferResponse {
   id: number;
 
   senderAccountId: string;
@@ -12,4 +13,8 @@ export class MoneyTransferDto {
   result: MoneyTransferResult;
 
   timestamp: Date;
+
+  senderAccount?: AccountResponse;
+
+  receiverAccount?: AccountResponse;
 }

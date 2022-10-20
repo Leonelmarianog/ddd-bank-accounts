@@ -8,11 +8,11 @@ export interface IAccountService {
 
   create(account: Account): Promise<Account>;
 
-  update(id: number, updates: Account): Promise<Account>;
+  update(id: number, updates: Account): Promise<boolean>;
 
-  softDelete(id: number): Promise<void>;
+  softDelete(id: number): Promise<boolean>;
 
-  delete(id: number): Promise<void>;
+  delete(id: number): Promise<boolean>;
 
   transferMoney(moneyTransfer: MoneyTransfer): Promise<MoneyTransfer>;
 }

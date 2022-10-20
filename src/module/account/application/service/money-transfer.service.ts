@@ -2,15 +2,18 @@ import { MoneyTransfer } from '../../domain/money-transfer.entity';
 import { IMoneyTransferRepository } from '../repository/money-transfer.repository.interface';
 import { IMoneyTransferService } from './money-transfer.service.interface';
 import { IAccountRepository } from '../repository/account.repository.interface';
-import { SenderNotFoundException } from '../exception/sender-not-found.exception';
 import { NotSufficientBalance } from '../exception/not-sufficient-balance.exception';
 import { ReceiverNotFoundException } from '../exception/receiver-not-found.exception';
-import { HttpException } from '@nestjs/common';
+import { HttpException, Inject, Injectable } from '@nestjs/common';
 import { MoneyTransferResult } from '../../domain/money-transfer-result.enum';
+import { SenderNotFoundException } from '../exception/sender-not-found.exception';
 
+@Injectable()
 export class MoneyTransferService implements IMoneyTransferService {
   constructor(
+    @Inject('IMoneyTransferRepository')
     private readonly moneyTransferRepository: IMoneyTransferRepository,
+    @Inject('IAccountRepository')
     private readonly accountRepository: IAccountRepository
   ) {}
 
@@ -19,17 +22,17 @@ export class MoneyTransferService implements IMoneyTransferService {
       const sender = await this.accountRepository.getOneByAccountId(moneyTransfer.senderAccountId);
 
       if (!sender) {
-        throw new SenderNotFoundException(moneyTransfer.senderAccountId);
+        throw new SenderNotFoundException(`Sender account with ID ${moneyTransfer.senderAccountId} not found`);
       }
 
       const receiver = await this.accountRepository.getOneByAccountId(moneyTransfer.receiverAccountId);
 
       if (!receiver) {
-        throw new ReceiverNotFoundException(moneyTransfer.receiverAccountId);
+        throw new ReceiverNotFoundException(`Receiver account with ID ${moneyTransfer.receiverAccountId} not found`);
       }
 
       if (sender.balance < moneyTransfer.amount) {
-        throw new NotSufficientBalance(moneyTransfer.senderAccountId);
+        throw new NotSufficientBalance('Not enough balance to realize this operation');
       }
 
       sender.withdraw(moneyTransfer.amount);
