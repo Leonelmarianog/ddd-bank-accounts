@@ -1,7 +1,7 @@
 {
-  "name": "bank-accounts",
+  "name": "ddd-bank-accounts",
   "version": "0.0.1",
-  "description": "",
+  "description": "Sample project where I implement DDD practices.",
   "author": "",
   "private": true,
   "license": "UNLICENSED",
