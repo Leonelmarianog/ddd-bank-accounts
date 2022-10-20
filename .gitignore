@@ -36,3 +36,11 @@ lerna-debug.log*
 
 # .env files
 .env
+
+# DB
+data/database.db
+data/database.db-shm
+data/database.db-wal
+data/database.*.db
+data/database.*.db-shm
+data/database.*.db-wal
