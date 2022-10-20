@@ -1,0 +1,12 @@
+entity: AccountEntity
+items:
+  accountEntity0:
+    accountId: 123456789
+    name: Main Account
+    owner: John Doe
+    balance: 1000
+  accountEntity1:
+    accountId: 987654321
+    name: Main Account
+    owner: Jane Doe
+    balance: 1000

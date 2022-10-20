@@ -1,0 +1,7 @@
+entity: MoneyTransferEntity
+items:
+  moneyTransferEntity0:
+    senderAccount: '@accountEntity0'
+    receiverAccount: '@accountEntity1'
+    amount: 500
+    result: 'Successful'

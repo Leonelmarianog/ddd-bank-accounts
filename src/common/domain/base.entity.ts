@@ -1,6 +1,9 @@
 export class BaseEntity {
   id: number;
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt: Date;
+
+  createdAt?: Date;
+
+  updatedAt?: Date;
+
+  deletedAt?: Date;
 }
